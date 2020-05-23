@@ -12,7 +12,7 @@
 		<div class="chatlogs">
 			
 		</div>
-		<div><input id="input" type="textarea" placeholder="say anything..." autocomplete="off"/><button id="send">Send</button></div>
+		<div><input id="input" type="textarea" placeholder="say anything..." autocomplete="off"/><button id="send" onclick="send()">Send</button></div>
 		<div class="feedback_line"><button onclick="feedback()" id="feedback">feedback</button></div>
 	</div>
 </div>
@@ -32,7 +32,18 @@ var trigger = [
 	["help me", "tell me story", "tell me joke"],
 	["ah", "yes", "ok", "okay", "nice", "thanks", "thank you"],
 	["bye", "good bye", "goodbye", "see you later"],
-    ["cuhk engineering faculty address"]
+    ["cuhk engineering faculty address"],
+    ["how many programmes"],
+    ["how many students will be admitted into the Broad-based Engineering programme"],
+    ["entrance requirement","entrance requirements"],
+    ["dean's address","address of dean"],
+    ["address of student affairs office","student affair office address","where is student affairs office","where is student affair office"],
+    ["phone number of studnet affairs office","phone number of studnet affair office"],
+    ["contact of student affairs office","how to approach student affair","contact of student affair office","approach staff","staff contact"],
+    ["how many departments"],
+    ["how can i know more information","more info","more information"],
+    ["news","update","updates"],
+    ["admissions"]
 ];
 
 var reply = [
@@ -49,7 +60,18 @@ var reply = [
 	["I will", "What about?"],
 	["Tell me a story", "Tell me a joke", "Tell me about yourself", "You are welcome"],
 	["Bye", "Goodbye", "See you later"],
-    ["Faculty Office of Engineering, 6/F, Ho Sin Hang Engineering Building The Chinese University of Hong Kong"]
+    ["Faculty Office of Engineering, 6/F, Ho Sin Hang Engineering Building The Chinese University of Hong Kong"],
+    ["There are 11 bachelor degree programmes. Artificial Intelligence: Systems and Technologies, Biomedical Engineering, Computer Engineering, Electronic Engineering, Energy and Environmental Engineering, Financial Technology, Information Engineering, Mechanical and Automation Engineering, Systems Engineering and Engineering Management, Computer Science, and Mathematics and Information Engineering"],
+    ["The admission quota is around 300. The number includes JUPAS and non-JUPAS (local) students."],
+    ["The details can be viewed at www.erg.cuhk.edu.hk/erg/Jupas"],
+    ["The address of dean's office is Ho Sin-Hang Engineering Building Room 606"],
+    ["The address of student affair office is Ho Sin-Hang Engineering Building Room 606"],
+    ["(852) 39438446 / 39434294"],
+    ["You can find student affairs office through email info@erg.cuhk.edu.hk, telephone (852) 39438446 / 39434294 or fax (852) 26035701"],
+    ["There are 6 academic departments: Department of Biomedical Engineering, Department of Computer Science and Engineering, Department of Electronic Engineering, Department of Information Engineering, Department of Mechanical and Automation Engineering, and Department of Systems Engineering and Engineering Management"],
+    ["You can know more information about CUHK Engineering faulty through the website https://www.erg.cuhk.edu.hk/erg/"],
+    ["You can know more news and updates through https://www.erg.cuhk.edu.hk/erg/News"],
+    ["You can know more engineering admission through https://www.erg.cuhk.edu.hk/erg/Admissions"]
 ];
 
 var alternative = ["I can google it for you"];
@@ -128,7 +150,6 @@ result = result.unique();
 
 console.log(str);
     return str;
-    
 }
     
     
@@ -168,6 +189,8 @@ function output(input){
 	chatlog[0].appendChild(user_chat);
 	speak(product);
 	document.getElementById("input").value = ""; //clear input value
+
+	ScrollDown();
 }
     
     
@@ -200,6 +223,35 @@ function speak(string){
 function feedback(){
     window.open('mailto:test@example.com?subject=Feedback');
 }
+function send(){
+	var input = document.getElementById("input").value;
+	var user_chat = document.createElement("div");
+	user_chat.className = "chat user";
+	var user_name=document.createElement("div");
+	user_name.className= "user-name";
+	var chat_name=document.createTextNode("You");
+	user_name.appendChild(chat_name);
+	user_chat.appendChild(user_name);
+	var user_input= document.createElement("p");
+	user_input.className = "chat-message";
+	var text=document.createTextNode(input);
+	user_input.appendChild(text);
+	user_chat.appendChild(user_input);
+	var chatlog=document.getElementsByClassName("chatlogs");
+	chatlog[0].appendChild(user_chat);
+
+	output(input);
+}
+
+
+
+function ScrollDown(){
+	var chat_log=document.getElementsByClassName("chatlogs");
+	chat_log[0].scrollTop = chat_log[0].scrollHeight - chat_log[0].clientHeight;
+}
+
+
+
 
 </script>
 </body>

@@ -14,13 +14,13 @@ span {
 	border: 0; background: #EBE547; padding: 5px; border: 1px solid #421; width:80%; margin-left: 20px; 
 }
 #send{
-	border: 0; padding: 5px; border: 1px solid #421; 	
+	border: 0; padding: 5px; border: 1px solid #421; margin-left:5px; 	
 }
 .feedback_line{
 	width:100%; text-align: right;
 }
 #feedback{
-	border: 0; padding: 5px; border: 1px solid #421; padding:5px; margin-top:10px; margin-right:25px;
+	border: 0; padding: 5px; border: 1px solid #421; padding:5px; margin-top:10px; margin-right:20px;
 }
 .chatbox{
 	width:500px;
