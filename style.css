@@ -16,6 +16,12 @@ span {
 #send{
 	border: 0; padding: 5px; border: 1px solid #421; 	
 }
+.feedback_line{
+	width:100%; text-align: right;
+}
+#feedback{
+	border: 0; padding: 5px; border: 1px solid #421; padding:5px; margin-top:10px; margin-right:25px;
+}
 .chatbox{
 	width:500px;
 	min-width: 350px;
