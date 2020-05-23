@@ -30,7 +30,8 @@ var trigger = [
 	["bad", "bored", "tired"],
 	["help me", "tell me story", "tell me joke"],
 	["ah", "yes", "ok", "okay", "nice", "thanks", "thank you"],
-	["bye", "good bye", "goodbye", "see you later"]
+	["bye", "good bye", "goodbye", "see you later"],
+    ["cuhk engineering faculty address"]
 ];
 
 var reply = [
@@ -46,7 +47,8 @@ var reply = [
 	["Why?", "Why? You shouldn't!", "Try watching TV"],
 	["I will", "What about?"],
 	["Tell me a story", "Tell me a joke", "Tell me about yourself", "You are welcome"],
-	["Bye", "Goodbye", "See you later"]
+	["Bye", "Goodbye", "See you later"],
+    ["Faculty Office of Engineering, 6/F, Ho Sin Hang Engineering Building The Chinese University of Hong Kong"]
 ];
 
 var alternative = ["I can google it for you"];
@@ -57,6 +59,11 @@ document.querySelector("#input").addEventListener("keypress", function(e){
 		var input = document.getElementById("input").value;
 		var user_chat = document.createElement("div");
 		user_chat.className = "chat user";
+		var user_name=document.createElement("div");
+		user_name.className= "user-name";
+		var chat_name=document.createTextNode("You");
+		user_name.appendChild(chat_name);
+		user_chat.appendChild(user_name);
 		var user_input= document.createElement("p");
 		user_input.className = "chat-message";
 		var text=document.createTextNode(input);
@@ -68,23 +75,89 @@ document.querySelector("#input").addEventListener("keypress", function(e){
 		output(input);
 	}
 });
+
+
+function extract(input){
+    Array.prototype.contains = function(v) {
+  for (var i = 0; i < this.length; i++) {
+    if (this[i] === v) return true;
+  }
+  return false;
+};
+
+Array.prototype.unique = function() {
+  var arr = [];
+  for (var i = 0; i < this.length; i++) {
+    if (!arr.contains(this[i])) {
+      arr.push(this[i]);
+    }
+  }
+  return arr;
+}
+
+
+var $commonWords = ['i','a','about','an','and','are','as','at','be','by','com','de','en','for','from','how','in','is','it','la','of','on','or','that','the','this','to','was','what','when','where','who','will','with','und','the','www'];
+
+// Convert to lowercase
+input = input.toLowerCase();
+
+// replace unnesessary chars. leave only chars, numbers and space
+input = input.replace(/[^\w\d ]/g, '');
+
+var result = input.split(' ');
+
+// remove $commonWords
+result = result.filter(function (word) {
+    return $commonWords.indexOf(word) === -1;
+});
+
+// Unique words
+result = result.unique();
+
+  var str = "";
+  for (var i = 0; i < result.length; i++) {
+    if (i!=result.length-1) {
+      str = str + result[i] +" ";
+    }
+    else{
+      str = str + result[i];
+  }
+  }
+
+
+console.log(str);
+    return str;
+    
+}
     
     
 function output(input){
-	try{
+		try{
 		var product = input + "=" + eval(input);
 	} catch(e){
+        
 		var text = (input.toLowerCase()).replace(/[^\w\s\d]/gi, ""); //remove all chars except words, space and 
 		text = text.replace(/ a /g, " ").replace(/i feel /g, "").replace(/whats/g, "what is").replace(/please /g, "").replace(/ please/g, "");
+        
+        var text2 = (extract(input).toLowerCase()).replace(/[^\w\s\d]/gi, ""); //remove all chars except words, space and 
+		text2 = text2.replace(/ a /g, " ").replace(/i feel /g, "").replace(/whats/g, "what is").replace(/please /g, "").replace(/ please/g, "");
+        
 		if(compare(trigger, reply, text)){
 			var product = compare(trigger, reply, text);
-		} else {
-			var product = alternative[0];
+		} else if (compare(trigger, reply, text2)){
+              var product = compare(trigger, reply, text2);
+           }else {
+            var product = alternative[0];
             window.open('http://google.com/search?q='+input);
 		}
 	}
 	var user_chat = document.createElement("div");
 	user_chat.className = "chat bot";
+	var user_name=document.createElement("div");
+	user_name.className= "user-name";
+	var chat_name=document.createTextNode("Bot");
+	user_name.appendChild(chat_name);
+	user_chat.appendChild(user_name);
 	var user_input= document.createElement("p");
 	user_input.className = "chat-message";
 	var text=document.createTextNode(product);
@@ -122,7 +195,11 @@ function speak(string){
 	speechSynthesis.speak(utterance);
 }
     
-    
+
+function feedback(){
+    window.open('mailto:test@example.com?subject=Feedback');
+}
+
 </script>
 </body>
 </html>

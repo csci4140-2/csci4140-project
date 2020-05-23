@@ -42,17 +42,40 @@ span {
  	background-color: rgba(0,0,0,.1);
  }
 
+
+.chat{
+	display:flex;
+	flex-flow:row wrap;
+	align-items:flex-start;
+	margin-botton:10px;
+}
+
 .chat .chat-message{
+	width:75%;
 	padding: 10px;
 	margin:5px;
 	background-color: yellow;
 	border-radius: 10px;
 	font-size: 18px; 
 }
+
+.chat .user-name{
+	width: 60px;
+	height:60px;
+	background-color: #ccc;
+	color:#0000CD;
+	border:1px;
+	border-radius: 50%;
+	display: flex;
+    justify-content: center;
+    align-items: center;
+	text-align:center;
+}
+
 .bot .chat-message{
-	background: blue;
+	background: #00FFFF;
+	order : -1;
 }
 .user .chat-message{
-	background: green;
-	order : -1;
+	background: #00FF00;
 }
