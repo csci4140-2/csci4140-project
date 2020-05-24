@@ -58,6 +58,7 @@ span {
 
 .chat .chat-message{
 	width:75%;
+	display: block;
 	padding: 10px;
 	margin:5px;
 	background-color: yellow;
