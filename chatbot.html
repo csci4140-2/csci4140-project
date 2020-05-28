@@ -32,24 +32,25 @@ var trigger = [
 	["help me", "tell me story", "tell me joke"],
 	["ah", "yes", "ok", "okay", "nice", "thanks", "thank you"],
 	["bye", "good bye", "goodbye", "see you later"],
-    ["cuhk engineering faculty address"],
-    ["many programmes"],
-    ["many students will be admitted into the Broad-based Engineering programme"],
+    ["cuhk engineering faculty address","where is cuhk engineering faculty","cuhk engineering faculty","where is engineering faculty"],
+    ["programme","what programme does cuhk engineering faculty have","program","programmes","programs"],
+    ["students will be admitted into the Broad-based Engineering programme"],
     ["entrance requirement","entrance requirements"],
     ["dean's address","address of dean"],
     ["address of student affairs office","student affair office address","location of student affairs office"],
     ["phone number of studnet affairs office","phone number of studnet affair office"],
     ["contact of student affairs office","approach student affair","contact of student affair office","approach staff","staff contact"],
-    ["many departments"],
+    ["departments"],
     ["more info","more information"],
     ["news","update","updates"],
-    ["admissions"],
-    ["cs stream"],
+    ["admissions","admission"],
+    ["cs stream","streams","stream","streams cs department"],
     ["cse corner","cs corner","ce corner"],
-    ["prerequisite"],
-    ["graduation requirements","graduation course requirements"],
-    ["department address","address of department"],
-    ["email of department"]
+    ["prerequisite","prerequisite subject","course list","course","courses","prerequisite course of csci4140"],
+    ["graduation requirements","graduation course requirements","graduation requirement","graduation course requirement"],
+    ["department address","address of department","address department"],
+    ["email of department","email","email department"],
+    ["dean's email","email of dean","engineering faculty dean's email","email of engineering faculty dean"]
 ];
 
 var reply = [
@@ -83,7 +84,8 @@ var reply = [
     ["Please check through https://www.cse.cuhk.edu.hk/en/education/courses/course-list/undergraduate-course-list/detail"],
     ["You can check throguh https://www.cse.cuhk.edu.hk/images/content/education/current_students/cs/CSCIN18-19-4.pdf"],
     ["You can visit the cs department at Ho Sin-Hang Engineering Building Rm1028"],
-    ["If you have any question, you can email to dept@cse.cuhk.edu.hk (or pgenquiry@cse.cuhk.edu.hk for MPhil- PhD Programme admissions )"]
+    ["If you have any question, you can email to dept@cse.cuhk.edu.hk (or pgenquiry@cse.cuhk.edu.hk for MPhil- PhD Programme admissions )"],
+    ["mdfwong@cuhk.edu.hk"]
 ];
 
 var alternative = ["I can google it for you"];
@@ -131,7 +133,7 @@ Array.prototype.unique = function() {
 }
 
 
-var $commonWords = ['i','a','about','an','and','are','as','at','be','by','com','de','en','for','from','how','in','is','it','la','of','on','or','that','the','this','to','was','what','when','where','who','will','with','und','the','www'];
+var $commonWords = ['i','a','about','an','and','are','as','at','be','by','com','de','en','for','from','how','in','is','it','la','of','on','or','that','the','this','to','was','what','when','where','who','will','with','und','the','www','there','do','does','you','your','I','me','mine','did','done','have','had','has','he','him','his','she','her','they','their','theirs','want','know','wonder','ask','many','can','will','could','would','shall','should'];
 
 // Convert to lowercase
 input = input.toLowerCase();
@@ -182,7 +184,7 @@ function output(input){
               var product = compare(trigger, reply, text2);
            }else {
             var product = alternative[0];
-            window.open('http://google.com/search?q='+input);
+            window.open('http://google.com/search?q='+'cuhk engineering '+input);
 		}
 	}
 	var user_chat = document.createElement("div");
